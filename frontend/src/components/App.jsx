@@ -147,7 +147,7 @@ function App() {
     function handleLogin(token) {
         console.log(token)
         if (token) {
-            localStorage.setItem('jwt', token);
+            localStorage.setItem('jwt', `Bearer ${token}`);
             propertiesApiCard.headers.authorization = `Bearer ${token}`;
             propertiesApiAuth.headers.authorization = `Bearer ${token}`;
         }
@@ -158,8 +158,8 @@ function App() {
     function handleTokenCheck(token) {
         const jwt = token ? token : localStorage.getItem('jwt');
         if (jwt) {
-            propertiesApiCard.headers.authorization = `Bearer ${token}`;
-            propertiesApiAuth.headers.authorization = `Bearer ${token}`;
+            propertiesApiCard.headers.authorization = token;
+            propertiesApiAuth.headers.authorization = token;
             Promise.all([auth.checkToken(jwt), api.getUserInfo(), api.getInitialCards()])
                 .then(([userLogin, userInfo, cards]) => {
                     setLoginUser({...userLogin, loggedIn: true});
