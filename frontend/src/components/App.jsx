@@ -18,7 +18,6 @@ import ProtectedRouteElement from "./ProtectedRoute";
 import InfoTooltip from "./InfoTooltip";
 import auth from "../utils/Auth";
 import {LoginUserContext} from "../context/LoginUserContext";
-import {propertiesApiAuth, propertiesApiCard} from "../utils/properties";
 
 function App() {
     const [currentUser, setCurrentUser] = React.useState({
@@ -147,19 +146,15 @@ function App() {
     function handleLogin(token) {
         if (token) {
             localStorage.setItem('jwt', `Bearer ${token}`);
-            propertiesApiCard.headers.authorization = `Bearer ${token}`;
-            propertiesApiAuth.headers.authorization = `Bearer ${token}`;
         }
-        handleTokenCheck(token);
+        handleTokenCheck();
     }
 
 
-    function handleTokenCheck(token) {
-        const jwt = token ? token : localStorage.getItem('jwt');
+    function handleTokenCheck() {
+        const jwt = localStorage.getItem('jwt');
         if (jwt) {
-            propertiesApiCard.headers.authorization = jwt;
-            propertiesApiAuth.headers.authorization = jwt;
-            Promise.all([auth.checkToken(jwt), api.getUserInfo(), api.getInitialCards()])
+            Promise.all([auth.checkToken(), api.getUserInfo(), api.getInitialCards()])
                 .then(([userLogin, userInfo, cards]) => {
                     setLoginUser({...userLogin, loggedIn: true});
                     setCurrentUser({...userInfo})

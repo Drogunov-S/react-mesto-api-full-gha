@@ -1,6 +1,5 @@
 const propertiesApiCard = {
-    // baseUrl: 'http://localhost:3000',
-    baseUrl: 'https://api.mesto-drogunov.nomoredomains.work',
+    baseUrl: 'http://localhost:3000',
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -8,8 +7,7 @@ const propertiesApiCard = {
 }
 
 const propertiesApiAuth = {
-    // baseUrl: 'http://localhost:3000',
-    baseUrl: 'https://api.mesto-drogunov.nomoredomains.work',
+    baseUrl: 'http://localhost:3000',
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'

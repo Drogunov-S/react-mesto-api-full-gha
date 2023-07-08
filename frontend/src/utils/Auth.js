@@ -22,7 +22,7 @@ class Auth {
         })
     }
 
-    checkToken(token) {
+    checkToken() {
         return this._request(`${this._baseUrl}/users/me`, {
             method: 'GET',
             headers: this._headers,
@@ -34,6 +34,7 @@ class Auth {
 
 
     _request(url, options) {
+        options.headers.authorization = localStorage.getItem('jwt');
         return fetch(url, options)
             .then(response => {
                 return response.ok

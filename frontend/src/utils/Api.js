@@ -65,6 +65,7 @@ class Api {
     }
 
     _request(url, options) {
+        options.headers.authorization = localStorage.getItem('jwt');
         return fetch(url, options).then(this._checkResponse);
     }
 
