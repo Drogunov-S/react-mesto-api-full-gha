@@ -33,6 +33,8 @@ app.use(express.json());
 app.use(helmet());
 // app.use(cookieParser());
 app.use(limiter);
+
+console.log(`${DB_URL}:${DB_PORT}/${DB_SCHEMA}`);
 mongoose.connect(`${DB_URL}:${DB_PORT}/${DB_SCHEMA}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
