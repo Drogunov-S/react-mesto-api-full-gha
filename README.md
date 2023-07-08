@@ -5,12 +5,12 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-Адрес репозитория: https://github.com/...
+Адрес репозитория: https://github.com/Drogunov-S/react-mesto-api-full-gha
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP-адрес 84.201.130.24
 
-Frontend https://...
+Frontend https://mesto-drogunov.nomoredomains.work/
 
-Backend https://...
+Backend https://api.mesto-drogunov.nomoredomains.work/
