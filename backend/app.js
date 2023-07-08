@@ -35,7 +35,9 @@ app.use(helmet());
 app.use(limiter);
 mongoose.connect(`${DB_URL}:${DB_PORT}/${DB_SCHEMA}`, {
   useNewUrlParser: true,
-});
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+}).then(() => console.log('DB connection'));
 
 app.use(requestLogger);
 app.use(router);
