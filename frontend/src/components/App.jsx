@@ -204,6 +204,7 @@ function App() {
                                     title='Вход'
                                     buttonText='Войти'
                                     onLogin={handleLogin}
+                                    onError={handlerInfoMassage}
                                 />}
                             />
                             <Route

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import auth from "../utils/Auth";
 
-function Login({title, buttonText, onLogin}) {
+function Login({title, buttonText, onLogin, onError}) {
 
     const [formValue, setFormValue] = useState(
         {email: '', password: ''}
@@ -26,7 +26,11 @@ function Login({title, buttonText, onLogin}) {
                 onLogin(token);
                 setFormValue({email: '', password: ''});
             })
-            .catch(console.log)
+            .catch(err => {
+                err.then(({message}) => {
+                    onError({message: message, isError: true});
+                })
+            })
     }
 
 

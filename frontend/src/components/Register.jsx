@@ -30,8 +30,8 @@ function Register({title, buttonText, onComplete}) {
                 navigate('/sign-in', {replace: true});
             })
             .catch(err => {
-                err.then(({error}) => {
-                    onComplete({message: error, isError: true});
+                err.then(({message}) => {
+                    onComplete({message: message, isError: true});
                 })
             })
     }
