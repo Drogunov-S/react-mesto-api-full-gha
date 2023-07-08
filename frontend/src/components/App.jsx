@@ -158,8 +158,8 @@ function App() {
     function handleTokenCheck(token) {
         const jwt = token ? token : localStorage.getItem('jwt');
         if (jwt) {
-            propertiesApiCard.headers.authorization = token;
-            propertiesApiAuth.headers.authorization = token;
+            propertiesApiCard.headers.authorization = jwt;
+            propertiesApiAuth.headers.authorization = jwt;
             Promise.all([auth.checkToken(jwt), api.getUserInfo(), api.getInitialCards()])
                 .then(([userLogin, userInfo, cards]) => {
                     setLoginUser({...userLogin, loggedIn: true});
