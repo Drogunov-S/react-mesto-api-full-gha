@@ -10,7 +10,5 @@
 ## Ссылки на проект
 
 IP-адрес 84.201.130.24
-
 Frontend https://mesto-drogunov.nomoredomains.work/
-
 Backend https://api.mesto-drogunov.nomoredomains.work/
