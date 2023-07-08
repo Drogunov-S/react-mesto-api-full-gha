@@ -37,6 +37,11 @@ app.use(limiter);
 mongoose.connect(`${DB_URL}:${DB_PORT}/${DB_SCHEMA}`).then(() => console.log('DB connection'));
 
 app.use(requestLogger);
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 app.use(router);
 app.use(errorLogger);
 app.use(errors());

@@ -16,6 +16,6 @@ module.exports.JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '7d';
 module.exports.JWT_NAME_FIELD = 'token';
 module.exports.HASH_SALT = process.env.HASH_SALT || 10;
 
-module.exports.DEFAULT_USER_NAME = process.env.DEFAULT_USER_NAME || 'Жак-Ив Кусто';
+module.exports.DEFAULT_USER_NAME = 'Жак-Ив Кусто';
 module.exports.DEFAULT_USER_ABOUT = 'Исследователь';
 module.exports.DEFAULT_USER_AVATAR = 'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png';
