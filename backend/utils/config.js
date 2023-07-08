@@ -1,5 +1,5 @@
 module.exports.PORT = process.env.PORT || 3000;
-module.exports.DB_URL = 'mongodb://localhost';
+module.exports.DB_URL = 'mongodb://127.0.0.1';
 module.exports.DB_PORT = '27017';
 module.exports.DB_SCHEMA = 'mestodb';
 
