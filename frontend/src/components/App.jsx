@@ -145,11 +145,10 @@ function App() {
     }
 
     function handleLogin(token) {
-        console.log(token)
         if (token) {
-            localStorage.setItem('jwt', `Bearer ${token}`);
-            propertiesApiCard.headers.authorization = `Bearer ${token}`;
-            propertiesApiAuth.headers.authorization = `Bearer ${token}`;
+            localStorage.setItem('jwt', token);
+            propertiesApiCard.headers.authorization = token;
+            propertiesApiAuth.headers.authorization = token;
         }
         handleTokenCheck(token);
     }

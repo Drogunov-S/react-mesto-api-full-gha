@@ -11,7 +11,7 @@ module.exports.auth = (req, res, next) => {
   try {
     // const { token } = req.cookies;
     const { authorization } = req.headers;
-    const token = authorization ? authorization.substring(7) : null;
+    const token = authorization || null;
     if (!token) {
       return next(new AuthException(ERR_MESSAGE_NO_AUTH));
     }
