@@ -28,12 +28,7 @@ const limiter = rateLimit.rateLimit({
   legacyHeaders: false,
 });
 
-app.use(cors({
-  origin: '*',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-}));
+app.use(cors());
 app.use(express.json());
 app.use(helmet());
 // app.use(cookieParser());
