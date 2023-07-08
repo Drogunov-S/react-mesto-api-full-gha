@@ -14,15 +14,16 @@ const NotAccessException = require('../exceptions/notAccessException');
 
 const getCards = (req, res, next) => {
   Card.find({})
-    .populate('owner')
-    .then((cards) => res.send(cards))
+    .populate(['owner', 'likes'])
+    .then((cards) => res.send(cards.reverse()))
     .catch(next);
 };
 const createCard = (req, res, next) => {
   const card = req.body;
   card.owner = req.user._id;
   Card.create(card)
-    .then((cardFromDb) => res.status(CODE_201).send(cardFromDb))
+    .then((cardFromDb) => Card.findById(cardFromDb._id).populate('owner'))
+    .then((newCard) => res.status(CODE_201).send(newCard))
     .catch((err) => {
       if (err.name === ERROR_VALIDATION) {
         next(new DataException(err.message));
@@ -53,6 +54,7 @@ const addLike = (req, res, next) => {
   const { id } = req.params;
   Card.findByIdAndUpdate(id, { $addToSet: { likes: _id } }, { new: true })
     .orFail(new NotFoundException(ERROR_NOT_FOUND))
+    .populate(['likes', 'owner'])
     .then((card) => res.send(card))
     .catch(next);
 };
@@ -66,6 +68,7 @@ const removeLike = (req, res, next) => {
     { new: true },
   )
     .orFail(new NotFoundException(ERROR_NOT_FOUND))
+    .populate(['likes', 'owner'])
     .then((card) => res.send(card))
     .catch(next);
 };

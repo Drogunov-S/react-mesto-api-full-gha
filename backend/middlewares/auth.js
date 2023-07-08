@@ -9,13 +9,15 @@ module.exports.auth = (req, res, next) => {
   let payload;
 
   try {
-    const { token } = req.cookies;
+    // const { token } = req.cookies;
+    const { authorization } = req.headers;
+    const token = authorization ? authorization.substring(7) : null;
     if (!token) {
       return next(new AuthException(ERR_MESSAGE_NO_AUTH));
     }
     payload = jwt.verify(token, JWT_SECRET);
   } catch (err) {
-    return next(new AuthException(ERR_MESSAGE_NO_AUTH));
+    return next(new AuthException(`${ERR_MESSAGE_NO_AUTH}`));
   }
 
   req.user = payload;

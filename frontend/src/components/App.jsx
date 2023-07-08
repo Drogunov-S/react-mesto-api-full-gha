@@ -18,6 +18,7 @@ import ProtectedRouteElement from "./ProtectedRoute";
 import InfoTooltip from "./InfoTooltip";
 import auth from "../utils/Auth";
 import {LoginUserContext} from "../context/LoginUserContext";
+import {propertiesApiAuth, propertiesApiCard} from "../utils/properties";
 
 function App() {
     const [currentUser, setCurrentUser] = React.useState({
@@ -40,6 +41,7 @@ function App() {
 
     React.useEffect(() => {
         handleTokenCheck();
+        // eslint-disable-next-line
     }, [])
 
     const [isEditAvatarPopup, setActiveEditAvatarPopup] = React.useState(false);
@@ -143,8 +145,11 @@ function App() {
     }
 
     function handleLogin(token) {
+        console.log(token)
         if (token) {
             localStorage.setItem('jwt', token);
+            propertiesApiCard.headers.authorization = `Bearer ${token}`;
+            propertiesApiAuth.headers.authorization = `Bearer ${token}`;
         }
         handleTokenCheck(token);
     }
@@ -153,13 +158,14 @@ function App() {
     function handleTokenCheck(token) {
         const jwt = token ? token : localStorage.getItem('jwt');
         if (jwt) {
+            propertiesApiCard.headers.authorization = `Bearer ${token}`;
+            propertiesApiAuth.headers.authorization = `Bearer ${token}`;
             Promise.all([auth.checkToken(jwt), api.getUserInfo(), api.getInitialCards()])
                 .then(([userLogin, userInfo, cards]) => {
                     setLoginUser({...userLogin, loggedIn: true});
                     setCurrentUser({...userInfo})
                     setCards(cards);
                     navigate('/', {replace: true});
-                    console.log('TEST TEST PASSED');
                 })
                 .catch(console.log);
         }

@@ -1,6 +1,7 @@
 import React from 'react';
 import {NavLink, useLocation, useNavigate} from "react-router-dom";
 import {LoginUserContext} from "../context/LoginUserContext";
+import {propertiesApiAuth, propertiesApiCard} from "../utils/properties";
 
 function NavBar({onLogout, locationClass}) {
 
@@ -11,6 +12,8 @@ function NavBar({onLogout, locationClass}) {
 
     function signOut() {
         localStorage.removeItem('jwt');
+        delete propertiesApiCard.headers.authorization
+        delete propertiesApiAuth.headers.authorization;
         onLogout();
         navigate('/sign-in');
     }

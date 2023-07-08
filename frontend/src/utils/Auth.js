@@ -1,15 +1,15 @@
 import {propertiesApiAuth} from "./properties";
 
 class Auth {
-    constructor({baseUrl, baseJsonHeaders}) {
+    constructor({baseUrl, headers}) {
         this._baseUrl = baseUrl;
-        this._baseJsonHeaders = baseJsonHeaders
+        this._headers = headers
     }
 
     register = (username, password) => {
         return this._request(`${this._baseUrl}/signup`, {
             method: 'POST',
-            headers: this._baseJsonHeaders,
+            headers: this._headers,
             body: JSON.stringify({email: username, password})
         })
     }
@@ -17,7 +17,7 @@ class Auth {
     authorize(email, password) {
         return this._request(`${this._baseUrl}/signin`, {
             method: 'POST',
-            headers: this._baseJsonHeaders,
+            headers: this._headers,
             body: JSON.stringify({email, password})
         })
     }
@@ -25,10 +25,7 @@ class Auth {
     checkToken(token) {
         return this._request(`${this._baseUrl}/users/me`, {
             method: 'GET',
-            headers: {
-                ...this._baseJsonHeaders,
-                "Authorization": `Bearer ${token}`
-            }
+            headers: this._headers,
         })
             .then((data) => {
                 return data.data;

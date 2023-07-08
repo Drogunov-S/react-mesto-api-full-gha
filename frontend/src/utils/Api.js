@@ -65,6 +65,10 @@ class Api {
     }
 
     _request(url, options) {
+        // const token = `Bearer ${localStorage.getItem('jwt')}`;
+// debugger
+//         options.body = token;
+//         debugger
         return fetch(url, options).then(this._checkResponse);
     }
 

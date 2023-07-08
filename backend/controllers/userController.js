@@ -7,17 +7,17 @@ const {
   USER_RU,
   ERROR_VALIDATION,
   ERROR_CODE_409_MESSAGE,
-  ACCESS_AUTH_RU,
+  // ACCESS_AUTH_RU,
   ERROR_CODE_11000,
 } = require('../utils/constants');
 const RegEmailException = require('../exceptions/regEmailException');
 const NotFoundException = require('../exceptions/notFoundException');
 const {
   JWT_SECRET,
-  COOKIE_LIAVE_TIME,
-  HTTP_ONLY,
+  // COOKIE_LIAVE_TIME,
+  // HTTP_ONLY,
   JWT_EXPIRES_IN,
-  JWT_NAME_FIELD,
+  // JWT_NAME_FIELD,
   HASH_SALT,
 } = require('../utils/config');
 const DataException = require('../exceptions/dataException');
@@ -55,8 +55,9 @@ const login = (req, res, next) => {
         JWT_SECRET,
         { expiresIn: JWT_EXPIRES_IN },
       );
-      res.cookie(JWT_NAME_FIELD, token, { maxAge: COOKIE_LIAVE_TIME, httpOnly: HTTP_ONLY })
-        .send({ message: ACCESS_AUTH_RU });
+      res.send({ token });
+      // res.cookie(JWT_NAME_FIELD, token, { maxAge: COOKIE_LIAVE_TIME, httpOnly: HTTP_ONLY })
+      //   .send({ message: ACCESS_AUTH_RU });
     }).catch((next));
 };
 

@@ -2,7 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const helmet = require('helmet');
-const cookieParser = require('cookie-parser');
+const cors = require('cors');
+// const cookieParser = require('cookie-parser');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const rateLimit = require('express-rate-limit');
 const { errors } = require('celebrate');
@@ -27,9 +28,10 @@ const limiter = rateLimit.rateLimit({
   legacyHeaders: false,
 });
 
+app.use(cors());
 app.use(express.json());
 app.use(helmet());
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(limiter);
 mongoose.connect(`${DB_URL}:${DB_PORT}/${DB_SCHEMA}`, {
   useNewUrlParser: true,
