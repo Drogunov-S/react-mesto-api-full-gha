@@ -27,9 +27,6 @@ class Auth {
             method: 'GET',
             headers: this._headers,
         })
-            .then((data) => {
-                return data.data;
-            })
     }
 
 
